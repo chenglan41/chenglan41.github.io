@@ -137,13 +137,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -173,6 +173,178 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/06/05/canvas%E7%BB%98%E5%88%B6%E4%B8%80%E7%89%87%E6%98%9F%E7%A9%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/avatar.jpg">
+      <meta itemprop="name" content="Alphi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="攻略站">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 攻略站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/06/05/canvas%E7%BB%98%E5%88%B6%E4%B8%80%E7%89%87%E6%98%9F%E7%A9%BA/" class="post-title-link" itemprop="url">canvas绘制一片星空</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-06-05 17:39:00" itemprop="dateCreated datePublished" datetime="2026-06-05T17:39:00+08:00">2026-06-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-06-20 00:02:57" itemprop="dateModified" datetime="2026-06-20T00:02:57+08:00">2026-06-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Coding/" itemprop="url" rel="index"><span itemprop="name">Coding</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> w = <span class="variable language_">window</span>.<span class="property">innerWidth</span>;</span><br><span class="line"><span class="keyword">var</span> h = <span class="variable language_">window</span>.<span class="property">innerHeight</span>;</span><br><span class="line"><span class="keyword">var</span> sky = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;sky&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> skyDraw = sky.<span class="title function_">getContext</span>(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line">sky.<span class="property">width</span> = w;</span><br><span class="line">sky.<span class="property">height</span> = h;</span><br><span class="line"><span class="keyword">const</span> stars = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">    stars.<span class="title function_">push</span>(&#123;</span><br><span class="line">        <span class="attr">x</span>: <span class="title class_">Math</span>.<span class="title function_">random</span>() * w,</span><br><span class="line">        <span class="attr">y</span>: <span class="title class_">Math</span>.<span class="title function_">random</span>() * h,</span><br><span class="line">        <span class="attr">size</span>: <span class="number">2</span>,</span><br><span class="line">        <span class="attr">brightness</span>: <span class="title class_">Math</span>.<span class="title function_">random</span>(),</span><br><span class="line">        <span class="attr">speed</span>: <span class="number">0.01</span> + <span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">0.02</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> gradient = skyDraw.<span class="title function_">createLinearGradient</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, h);</span><br><span class="line">    gradient.<span class="title function_">addColorStop</span>(<span class="number">0</span>, <span class="string">&#x27;#000000&#x27;</span>);   <span class="comment">// 顶部纯黑</span></span><br><span class="line">    gradient.<span class="title function_">addColorStop</span>(<span class="number">1</span>, <span class="string">&#x27;#1a0033&#x27;</span>);   <span class="comment">// 底部黑紫色</span></span><br><span class="line">    skyDraw.<span class="property">fillStyle</span> = gradient;</span><br><span class="line">    skyDraw.<span class="title function_">fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, w, h);</span><br><span class="line">    stars.<span class="title function_">forEach</span>(<span class="function"><span class="params">star</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 星星闪烁：正弦函数实现平滑明暗变化</span></span><br><span class="line">        star.<span class="property">brightness</span> += star.<span class="property">speed</span>;</span><br><span class="line">        <span class="keyword">const</span> alpha = <span class="number">0.5</span> + <span class="title class_">Math</span>.<span class="title function_">abs</span>(<span class="title class_">Math</span>.<span class="title function_">sin</span>(star.<span class="property">brightness</span>)) * <span class="number">0.5</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绘制2x2黄色星星（暖黄色）</span></span><br><span class="line">        skyDraw.<span class="property">fillStyle</span> = <span class="string">`rgba(255, 255, 200, <span class="subst">$&#123;alpha&#125;</span>)`</span>;</span><br><span class="line">        skyDraw.<span class="title function_">fillRect</span>(star.<span class="property">x</span>, star.<span class="property">y</span>, star.<span class="property">size</span>, star.<span class="property">size</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/05/31/Hexo%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/avatar.jpg">
+      <meta itemprop="name" content="Alphi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="攻略站">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 攻略站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/05/31/Hexo%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Hexo安装与使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-05-31 13:51:30" itemprop="dateCreated datePublished" datetime="2026-05-31T13:51:30+08:00">2026-05-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-06-20 00:03:03" itemprop="dateModified" datetime="2026-06-20T00:03:03+08:00">2026-06-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Coding/" itemprop="url" rel="index"><span itemprop="name">Coding</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p>对于Hexo默认主题Landscape，您可以使用以下配置设置你的Github仓库或者推特入口等入口</p>
+<h1 id="调整主题"><a href="#调整主题" class="headerlink" title="调整主题"></a>调整主题</h1><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">links:</span></span><br><span class="line">  <span class="attr">github:</span> <span class="string">https://github.com/your_github_account</span></span><br><span class="line">  <span class="attr">twitter:</span> <span class="string">https://twitter.com/your_twitter_account</span></span><br><span class="line">  <span class="attr">telegram:</span> <span class="string">https://t.me/your_telegram_account</span></span><br></pre></td></tr></table></figure>
+<h1 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n 文章题目</span><br></pre></td></tr></table></figure>
+<h1 id="自动检测变动并重新生成页面"><a href="#自动检测变动并重新生成页面" class="headerlink" title="自动检测变动并重新生成页面"></a>自动检测变动并重新生成页面</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate --watch</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -293,7 +465,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-05-04 10:58:24" itemprop="dateModified" datetime="2026-05-04T10:58:24+08:00">2026-05-04</time>
+      <time title="Modified: 2026-08-03 15:06:56" itemprop="dateModified" datetime="2026-08-03T15:06:56+08:00">2026-08-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -301,7 +473,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+          <a href="/categories/Coding/" itemprop="url" rel="index"><span itemprop="name">Coding</span></a>
         </span>
     </span>
 
@@ -379,7 +551,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-05-04 10:58:24" itemprop="dateModified" datetime="2026-05-04T10:58:24+08:00">2026-05-04</time>
+      <time title="Modified: 2026-08-03 15:06:29" itemprop="dateModified" datetime="2026-08-03T15:06:29+08:00">2026-08-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -387,7 +559,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+          <a href="/categories/Coding/" itemprop="url" rel="index"><span itemprop="name">Coding</span></a>
         </span>
     </span>
 
@@ -466,7 +638,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-05-04 10:58:24" itemprop="dateModified" datetime="2026-05-04T10:58:24+08:00">2026-05-04</time>
+      <time title="Modified: 2026-08-03 15:06:51" itemprop="dateModified" datetime="2026-08-03T15:06:51+08:00">2026-08-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -474,7 +646,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+          <a href="/categories/Coding/" itemprop="url" rel="index"><span itemprop="name">Coding</span></a>
         </span>
     </span>
 
@@ -577,7 +749,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-05-04 10:58:24" itemprop="dateModified" datetime="2026-05-04T10:58:24+08:00">2026-05-04</time>
+      <time title="Modified: 2026-08-03 15:07:25" itemprop="dateModified" datetime="2026-08-03T15:07:25+08:00">2026-08-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -585,7 +757,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+          <a href="/categories/Coding/" itemprop="url" rel="index"><span itemprop="name">Coding</span></a>
         </span>
     </span>
 
@@ -726,7 +898,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-05-04 10:58:24" itemprop="dateModified" datetime="2026-05-04T10:58:24+08:00">2026-05-04</time>
+      <time title="Modified: 2026-08-03 15:07:21" itemprop="dateModified" datetime="2026-08-03T15:07:21+08:00">2026-08-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -734,7 +906,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+          <a href="/categories/Coding/" itemprop="url" rel="index"><span itemprop="name">Coding</span></a>
         </span>
     </span>
 
@@ -840,7 +1012,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-05-04 10:58:24" itemprop="dateModified" datetime="2026-05-04T10:58:24+08:00">2026-05-04</time>
+      <time title="Modified: 2026-08-03 15:06:36" itemprop="dateModified" datetime="2026-08-03T15:06:36+08:00">2026-08-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -848,7 +1020,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+          <a href="/categories/Coding/" itemprop="url" rel="index"><span itemprop="name">Coding</span></a>
         </span>
     </span>
 
@@ -975,185 +1147,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/01/31/%E5%9C%B0%E9%9B%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/avatar.jpg">
-      <meta itemprop="name" content="Alphi">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="攻略站">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 攻略站">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/01/31/%E5%9C%B0%E9%9B%B7/" class="post-title-link" itemprop="url">教你做地雷</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2026-01-31 12:29:08" itemprop="dateCreated datePublished" datetime="2026-01-31T12:29:08+08:00">2026-01-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-05-04 10:58:24" itemprop="dateModified" datetime="2026-05-04T10:58:24+08:00">2026-05-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%88%91%E7%9A%84%E4%B8%96%E7%95%8C%E6%8C%87%E4%BB%A4/" itemprop="url" rel="index"><span itemprop="name">我的世界指令</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>不是怎么老贝炸啊TAT</p>
-<p>演示视频:</p>
-<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=115988225858247&bvid=BV1BV6yBXE7z&cid=35725774374&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-
-<p>1.循环 无条件 保持开启</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/execute as @e[type=chicken] at @s run tp @s ~~~</span><br></pre></td></tr></table></figure>
-<p>chicken 表示代表的实体，可替换</p>
-<p>2.循环 无条件 保持开启</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/execute as @e[type=chicken] at @s if entity @a[r=3] run damage @e 10 block_explosion</span><br></pre></td></tr></table></figure>
-<p>3 表示触发范围,<br>10 表示伤害</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/10/18/Hexo%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/avatar.jpg">
-      <meta itemprop="name" content="Alphi">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="攻略站">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 攻略站">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/10/18/Hexo%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Hexo 日常使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2025-10-18 23:59:30" itemprop="dateCreated datePublished" datetime="2025-10-18T23:59:30+08:00">2025-10-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-05-04 10:58:24" itemprop="dateModified" datetime="2026-05-04T10:58:24+08:00">2026-05-04</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>这里是一些最常用的 Hexo 命令了</p>
-<p>启动服务器</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>自动生成文章</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate --watch</span><br></pre></td></tr></table></figure>
-
-<p>将 Hexo 推送到 github</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
