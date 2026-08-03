@@ -137,13 +137,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -173,6 +173,185 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/02/13/%E9%AB%98%E7%B2%BE%E5%BA%A6%E4%B9%98%E6%B3%95-%E9%80%90%E4%BD%8D%E7%9B%B8%E4%B9%98%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/avatar.jpg">
+      <meta itemprop="name" content="Alphi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="攻略站">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 攻略站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/02/13/%E9%AB%98%E7%B2%BE%E5%BA%A6%E4%B9%98%E6%B3%95-%E9%80%90%E4%BD%8D%E7%9B%B8%E4%B9%98%E6%B3%95/" class="post-title-link" itemprop="url">高精度乘法-逐位相乘法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-02-13 00:33:38" itemprop="dateCreated datePublished" datetime="2026-02-13T00:33:38+08:00">2026-02-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-08-03 15:06:36" itemprop="dateModified" datetime="2026-08-03T15:06:36+08:00">2026-08-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Coding/" itemprop="url" rel="index"><span itemprop="name">Coding</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function">string <span class="title">bigAdd</span><span class="params">(string a,string b)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> cr[<span class="number">4001</span>];</span><br><span class="line">	string res = <span class="string">&quot;&quot;</span>;</span><br><span class="line">	<span class="keyword">while</span>(a.<span class="built_in">size</span>()&gt;b.<span class="built_in">size</span>())</span><br><span class="line">		b = <span class="string">&#x27;0&#x27;</span> + b;</span><br><span class="line">	<span class="keyword">while</span>(b.<span class="built_in">size</span>()&gt;a.<span class="built_in">size</span>())</span><br><span class="line">		a = <span class="string">&#x27;0&#x27;</span> + a;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4001</span>;i++)</span><br><span class="line">		cr[i] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = a.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">		cr[i] += (a[i]-<span class="string">&#x27;0&#x27;</span>)+(b[i]-<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">		<span class="keyword">if</span>(i &gt; <span class="number">0</span>)&#123;</span><br><span class="line">			cr[i<span class="number">-1</span>] += cr[i]/<span class="number">10</span>;</span><br><span class="line">			cr[i] = cr[i]%<span class="number">10</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> f = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;a.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(f == <span class="number">0</span> &amp;&amp; cr[i] != <span class="number">0</span>)f = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(f == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">0</span> &amp;&amp; cr[i] &gt;= <span class="number">10</span>)&#123;</span><br><span class="line">                res += cr[i] / <span class="number">10</span> + <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">                cr[i] = cr[i] % <span class="number">10</span>;</span><br><span class="line">            &#125; </span><br><span class="line">            res += cr[i] + <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(f == <span class="number">0</span>)<span class="keyword">return</span> <span class="string">&quot;0&quot;</span>;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">string <span class="title">smallMulti</span><span class="params">(string a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> cr[<span class="number">4001</span>];</span><br><span class="line">	string res = <span class="string">&quot;&quot;</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4001</span>;i++)</span><br><span class="line">		cr[i] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = a.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">		cr[i] += (a[i]-<span class="string">&#x27;0&#x27;</span>)*b;</span><br><span class="line">		<span class="keyword">if</span>(i &gt; <span class="number">0</span>)&#123;</span><br><span class="line">			cr[i<span class="number">-1</span>] += cr[i]/<span class="number">10</span>;</span><br><span class="line">			cr[i] = cr[i]%<span class="number">10</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> f = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;a.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(f == <span class="number">0</span> &amp;&amp; cr[i] != <span class="number">0</span>)f = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(f == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">0</span> &amp;&amp; cr[i] &gt;= <span class="number">10</span>)&#123;</span><br><span class="line">                res += cr[i] / <span class="number">10</span> + <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">                cr[i] = cr[i] % <span class="number">10</span>;</span><br><span class="line">            &#125; </span><br><span class="line">            res += cr[i] + <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(f == <span class="number">0</span>)<span class="keyword">return</span> <span class="string">&quot;0&quot;</span>;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	string a,b,res = <span class="string">&quot;0&quot;</span>;</span><br><span class="line">	cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;b.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">		string c = <span class="built_in">smallMulti</span>(a,b[i]-<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>;j&lt;b.<span class="built_in">size</span>()<span class="number">-1</span>-i;j++)</span><br><span class="line">			c += <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">		res = <span class="built_in">bigAdd</span>(res,c);</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; res;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/02/01/%E6%98%BE%E7%A4%BA%E6%9C%80%E8%BF%91%E7%9A%84%E5%AE%9E%E4%BD%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/avatar.jpg">
+      <meta itemprop="name" content="Alphi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="攻略站">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 攻略站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/02/01/%E6%98%BE%E7%A4%BA%E6%9C%80%E8%BF%91%E7%9A%84%E5%AE%9E%E4%BD%93/" class="post-title-link" itemprop="url">显示最近的实体</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-02-01 15:05:41" itemprop="dateCreated datePublished" datetime="2026-02-01T15:05:41+08:00">2026-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-08-03 15:51:59" itemprop="dateModified" datetime="2026-08-03T15:51:59+08:00">2026-08-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/minecraft/" itemprop="url" rel="index"><span itemprop="name">minecraft</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>躲猫猫结束咯（麦小鼠音）</p>
+<p>1.在输入框输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/scoreboard objectives add number1 dummy number1</span><br></pre></td></tr></table></figure>
+
+<p>2.循环 无条件 保持开启</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/scoreboard players set @a number1 -1</span><br></pre></td></tr></table></figure>
+
+<p>3.连锁 无条件 保持开启(被2所指)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/execute as @e at @s run scoreboard players add @a[r=16] number1 1</span><br></pre></td></tr></table></figure>
+<p>16表示范围，可修改</p>
+<p>4.连锁 无条件 保持开启(被3所指)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/titleraw @a actionbar &#123;&quot;rawtext&quot;: [&#123;&quot;text&quot;: &quot;§6附近实体数: §a&quot;&#125;, &#123;&quot;score&quot;:&#123;&quot;name&quot;: &quot;@s&quot;,&quot;objective&quot;: &quot;number1&quot;&#125;&#125;]&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -218,7 +397,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-05-04 10:58:24" itemprop="dateModified" datetime="2026-05-04T10:58:24+08:00">2026-05-04</time>
+      <time title="Modified: 2026-08-03 15:51:55" itemprop="dateModified" datetime="2026-08-03T15:51:55+08:00">2026-08-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -226,7 +405,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%88%91%E7%9A%84%E4%B8%96%E7%95%8C%E6%8C%87%E4%BB%A4/" itemprop="url" rel="index"><span itemprop="name">我的世界指令</span></a>
+          <a href="/categories/minecraft/" itemprop="url" rel="index"><span itemprop="name">minecraft</span></a>
         </span>
     </span>
 
