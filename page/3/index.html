@@ -137,7 +137,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -148,7 +148,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -185,6 +185,93 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/29/%E9%80%86%E5%85%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/avatar.jpg">
+      <meta itemprop="name" content="Alphi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="攻略站">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 攻略站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/03/29/%E9%80%86%E5%85%83/" class="post-title-link" itemprop="url">逆元</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-03-29 02:09:44" itemprop="dateCreated datePublished" datetime="2026-03-29T02:09:44+08:00">2026-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-08-03 15:06:29" itemprop="dateModified" datetime="2026-08-03T15:06:29+08:00">2026-08-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Coding/" itemprop="url" rel="index"><span itemprop="name">Coding</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>接下来，我们来学习如何求解线性同余方程。让我们考虑如何求线性方程<code>ax=b(mob m)</code>。对于实数运算下的方程<code>ax=b</code>，由于a存在倒数，因此很容易求解。如果在<code>mod m</code>的运算下，也有像满足<code>ay=1(mob m)</code>这样的a的倒数存在，方程就可以求解了。我们把这样的y叫做a的逆元，记作a^-1。如果能求解逆元，那么就有<code>x=a^-1*xa=a^-1b</code>，也就可以求出x了。由于方程<code>ax=1(mob m)</code>等价于存在整数k使得ax&#x3D;1+mk，因此稍作变形之后，可以变为求解满足<code>ax-mk=1</code>的x的问题。这个问题可以用extgcd(扩展欧几里得算法)求解。同时，也可以知道如果<code>gcd(a,m)!=1</code>，那么逆元是不存在的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">mod_inverse</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> m)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> x,y;</span><br><span class="line">    <span class="built_in">extgcd</span>(a,m,x,y);</span><br><span class="line">    <span class="keyword">return</span> (m + x % m) % m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果a和m不互素，那么<code>ax=b(mob m)</code>就等价于<br><code>(a/gcd(a,m))x≡b/gcd(a,m)(mob m/gcd(a,m))</code><br>从式子中可以看出，当b无法整除gcd(a,m)时，原方程无解。在有解的情况下，我们有<br><code>x≡gcd(a/gcd(a,m))^(-1)*(b/gcd(a,m))(mob m/gcd(a,m))</code><br>因此，<code>ax=b(mob m)</code>的解为<br><code>x≡a(a/gcd(a,m))^(-1)*(b/gcd(a,m))+(m/gcd(a,m))*k(mob m)(0≤k&lt;gcd(a,m))</code><br>需要注意的是这里和实数的情况有所不同，有可能有多解，也有可能无解。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
