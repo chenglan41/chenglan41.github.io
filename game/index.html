@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="攻略站">
 <meta property="og:description" content="🐋 蓝色大肥鱼接口粮大作战              * {             margin: 0;             padding: 0;             box-sizing: border-box;             user-select: none;         }         body {">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-08-25T11:48:31.906Z">
-<meta property="article:modified_time" content="2026-08-25T11:48:31.906Z">
+<meta property="article:published_time" content="2026-08-25T12:04:26.351Z">
+<meta property="article:modified_time" content="2026-08-25T12:04:26.351Z">
 <meta property="article:author" content="Alphi">
 <meta name="twitter:card" content="summary">
 
@@ -253,6 +253,8 @@
             padding: 10px 16px;
             color: #aac8ff;
             font-size: 16px;
+            flex-wrap: wrap;
+            gap: 6px;
         }
         .game-header .score span {
             color: #ffd700;
@@ -269,6 +271,26 @@
         }
         .game-header .high-score span {
             color: #ffd700;
+        }
+        .ai-toggle {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(100,200,255,0.2);
+            border-radius: 8px;
+            padding: 4px 12px;
+            color: #7ec8e3;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .ai-toggle:hover {
+            background: rgba(100,200,255,0.15);
+        }
+        .ai-toggle.active {
+            background: rgba(255,100,150,0.2);
+            border-color: #ff6b8a;
+            color: #ff8aaa;
+            box-shadow: 0 0 15px rgba(255,100,150,0.15);
         }
         .controls-hint {
             color: rgba(255,255,255,0.3);
@@ -297,9 +319,12 @@
         <div class="score">🐟 口粮: <span id="scoreDisplay">0</span></div>
         <div class="high-score">🏆 最高: <span id="highScoreDisplay">0</span></div>
         <div class="lives" id="livesDisplay">❤️❤️❤️</div>
+        <button class="ai-toggle" id="aiToggleBtn">🤖 AI 关闭</button>
     </div>
     <canvas id="gameCanvas" width="480" height="640"></canvas>
-    <div class="controls-hint">方向键 <kbd>←</kbd> <kbd>→</kbd> 或 <kbd>A</kbd> <kbd>D</kbd> 移动 · 按 <kbd>空格</kbd> 开始/重开</div>
+    <div class="controls-hint">
+        <kbd>←</kbd> <kbd>→</kbd> 或 <kbd>A</kbd> <kbd>D</kbd> 移动 · <kbd>空格</kbd> 开始/重开 · <kbd>M</kbd> 切换AI
+    </div>
 </div>
 <script>
 const canvas = document.getElementById('gameCanvas');
@@ -341,7 +366,146 @@ let particles = [];
 // 键盘
 const keys = { left: false, right: false };
 
-// 显示更新
+// ---- AI 模式 ----
+let aiMode = false;
+let aiTarget = null;       // 当前目标食物
+let aiReactionDelay = 0;   // 反应延迟帧数
+let aiMistakeChance = 0.05; // 偶尔失误的概率
+let aiFocusTimer = 0;      // 专注计时器
+let aiMaxFocus = 60;       // 最多专注60帧再重新选目标
+let aiPersonality = {
+    greed: 0.7,      // 贪心程度：0~1，越高越追高分食物
+    laziness: 0.1,   // 懒惰程度：偶尔不动
+    glitch: 0.03,    // 抽风概率：突然反向移动
+};
+
+function toggleAI() {
+    aiMode = !aiMode;
+    const btn = document.getElementById('aiToggleBtn');
+    if (aiMode) {
+        btn.textContent = '🤖 AI 开启';
+        btn.classList.add('active');
+        aiTarget = null;
+        aiFocusTimer = 0;
+    } else {
+        btn.textContent = '🤖 AI 关闭';
+        btn.classList.remove('active');
+        aiTarget = null;
+    }
+}
+
+// AI 决策：选择目标食物
+function aiSelectTarget() {
+    if (foods.length === 0) {
+        aiTarget = null;
+        return null;
+    }
+
+    // 给每个食物打分
+    let bestScore = -Infinity;
+    let bestFood = null;
+
+    for (const f of foods) {
+        // 距离底部越近（越紧急）分数越高
+        const urgency = (H - f.y) / H;  // 0~1，越靠近底部越大
+        
+        // 水平距离越近越好
+        const distX = Math.abs(f.x - fish.x);
+        const proximity = 1 - Math.min(distX / W, 1);
+        
+        // 分数价值
+        const value = f.type.points / 30; // 归一化到0~1
+
+        // 综合评分
+        let score = 
+            urgency * 3.0 +                  // 紧急程度最重要
+            proximity * 1.5 +                // 距离近加分
+            value * 2.0 * aiPersonality.greed; // 贪心系数
+
+        // 如果水平距离太远且还很高，降低分数
+        if (f.y < H * 0.3 && distX > 100) {
+            score *= 0.3;
+        }
+
+        if (score > bestScore) {
+            bestScore = score;
+            bestFood = f;
+        }
+    }
+
+    aiTarget = bestFood;
+    return bestFood;
+}
+
+// AI 移动逻辑
+function aiUpdate() {
+    if (!aiMode || game.state !== 'playing') return;
+
+    // 偶尔懒惰一下不动
+    if (Math.random() < aiPersonality.laziness) return;
+
+    // 重新选择目标
+    aiFocusTimer++;
+    if (aiTarget === null || aiFocusTimer > aiMaxFocus || !foods.includes(aiTarget)) {
+        aiSelectTarget();
+        aiFocusTimer = 0;
+    }
+
+    if (!aiTarget) return;
+
+    // 反应延迟模拟（让AI看起来没那么完美）
+    if (aiReactionDelay > 0) {
+        aiReactionDelay--;
+        return;
+    }
+
+    // 偶尔抽风反向移动
+    if (Math.random() < aiPersonality.glitch) {
+        if (aiTarget.x > fish.x) {
+            fish.x = Math.max(30, fish.x - fish.speed * 2);
+        } else {
+            fish.x = Math.min(W - 30, fish.x + fish.speed * 2);
+        }
+        return;
+    }
+
+    // 偶尔失误：往错误方向移动
+    if (Math.random() < aiMistakeChance) {
+        if (aiTarget.x > fish.x) {
+            fish.x = Math.max(30, fish.x - fish.speed);
+        } else {
+            fish.x = Math.min(W - 30, fish.x + fish.speed);
+        }
+        return;
+    }
+
+    // 正常追踪：平滑移动到目标下方
+    const diff = aiTarget.x - fish.x;
+    const moveSpeed = fish.speed * (0.8 + Math.random() * 0.4);
+    
+    if (Math.abs(diff) < 5) {
+        // 已经在目标下方，微调即可
+    } else if (Math.abs(diff) < 20) {
+        fish.x += Math.sign(diff) * moveSpeed * 0.5;
+    } else {
+        fish.x += Math.sign(diff) * moveSpeed;
+    }
+
+    // 边界限制
+    fish.x = Math.max(30, Math.min(W - 30, fish.x));
+
+    // 目标已经被接住或消失了，重置
+    if (!foods.includes(aiTarget)) {
+        aiTarget = null;
+    }
+}
+
+// 在AI模式下，重置反应延迟
+function aiResetReaction() {
+    aiReactionDelay = Math.floor(Math.random() * 5); // 0~4帧延迟
+}
+
+// ---- 显示更新 ----
 function updateUI() {
     document.getElementById('scoreDisplay').textContent = game.score;
     document.getElementById('highScoreDisplay').textContent = game.highScore;
@@ -359,6 +523,8 @@ function resetGame() {
     bubbles = [];
     particles = [];
     fish.x = W/2;
+    aiTarget = null;
+    aiFocusTimer = 0;
     updateUI();
 }
 
@@ -440,11 +606,32 @@ function drawFish() {
     ctx.stroke();
     ctx.restore();
 
+    // AI模式下鱼尾带彩光
+    if (aiMode) {
+        ctx.save();
+        ctx.translate(fx - 20, fy);
+        ctx.fillStyle = 'rgba(255,100,150,0.15)';
+        ctx.beginPath();
+        ctx.moveTo(0, -10);
+        ctx.quadraticCurveTo(-22, -20, -30, -6);
+        ctx.quadraticCurveTo(-24, -2, -18, 0);
+        ctx.quadraticCurveTo(-24, 2, -30, 6);
+        ctx.quadraticCurveTo(-22, 20, 0, 10);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+    }
+
     // 鱼身
+    let bodyColor1 = '#1a3a6a', bodyColor2 = '#2a6a9a';
+    if (aiMode) {
+        bodyColor1 = '#3a1a5a';
+        bodyColor2 = '#6a2a8a';
+    }
     const bodyGrad = ctx.createLinearGradient(fx - 25, fy, fx + 25, fy);
-    bodyGrad.addColorStop(0, '#1a3a6a');
-    bodyGrad.addColorStop(0.5, '#2a6a9a');
-    bodyGrad.addColorStop(1, '#1a3a6a');
+    bodyGrad.addColorStop(0, bodyColor1);
+    bodyGrad.addColorStop(0.5, bodyColor2);
+    bodyGrad.addColorStop(1, bodyColor1);
     ctx.fillStyle = bodyGrad;
     ctx.beginPath();
     ctx.ellipse(fx, fy, 28, 16, 0, 0, Math.PI * 2);
@@ -454,7 +641,7 @@ function drawFish() {
     ctx.stroke();
 
     // 鱼鳍（背鳍）
-    ctx.fillStyle = '#1a4a7a';
+    ctx.fillStyle = aiMode ? '#3a2a6a' : '#1a4a7a';
     ctx.beginPath();
     ctx.moveTo(fx - 5, fy - 16);
     ctx.quadraticCurveTo(fx + 5, fy - 26, fx + 15, fy - 16);
@@ -474,6 +661,14 @@ function drawFish() {
     ctx.beginPath();
     ctx.arc(fx + 15, fy - 5.5, 1.5, 0, Math.PI * 2);
     ctx.fill();
+
+    // AI模式下眼睛发光
+    if (aiMode) {
+        ctx.fillStyle = 'rgba(255,100,200,0.2)';
+        ctx.beginPath();
+        ctx.arc(fx + 14, fy - 4, 5, 0, Math.PI * 2);
+        ctx.fill();
+    }
 
     // 鱼嘴
     ctx.strokeStyle = '#5a8aaa';
@@ -507,6 +702,17 @@ function drawFood(food) {
     ctx.beginPath();
     ctx.arc(food.x, food.y, food.size, 0, Math.PI * 2);
     ctx.fill();
+
+    // AI模式下，目标食物有高亮框
+    if (aiMode && aiTarget === food) {
+        ctx.strokeStyle = 'rgba(255,100,200,0.3)';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.arc(food.x, food.y, food.size + 6, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+    }
 }
 
 // 绘制背景
@@ -529,6 +735,21 @@ function drawBackground() {
         ctx.beginPath();
         ctx.arc(x, y, r, 0, Math.PI * 2);
         ctx.fill();
+    }
+
+    // AI模式下，海底有淡淡的网状光效
+    if (aiMode) {
+        ctx.strokeStyle = 'rgba(255,100,200,0.03)';
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i < 6; i++) {
+            const y = (i * 110 + 20) % H;
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            for (let x = 0; x <= W; x += 20) {
+                ctx.lineTo(x, y + Math.sin(x * 0.05 + game.frame * 0.01) * 5);
+            }
+            ctx.stroke();
+        }
     }
 }
 
@@ -557,11 +778,16 @@ function drawStartScreen() {
     ctx.fillText('🪙 Token +10  🐟 小鱼干 +15  🍪 饼干 +8', W/2, H/2 + 30);
     ctx.fillText('🧁 蛋糕 +20  🦐 虾仁 +12  💎 彩蛋 +30', W/2, H/2 + 58);
 
+    // AI模式提示
+    ctx.font = '15px "Segoe UI", "PingFang SC", sans-serif';
+    ctx.fillStyle = aiMode ? '#ff8aaa' : 'rgba(255,255,255,0.3)';
+    ctx.fillText('按 M 键切换AI自动模式 · 看大肥鱼自己玩自己！', W/2, H/2 + 88);
+
     ctx.font = '20px "Segoe UI", "PingFang SC", sans-serif';
     ctx.fillStyle = '#fff';
     const pulse = Math.sin(Date.now() * 0.005) * 0.15 + 1;
     ctx.save();
-    ctx.translate(W/2, H/2 + 120);
+    ctx.translate(W/2, H/2 + 130);
     ctx.scale(pulse, pulse);
     ctx.fillText('按 空格键 开始游戏', 0, 0);
     ctx.restore();
@@ -569,7 +795,7 @@ function drawStartScreen() {
     // 画一条鱼在中间
     const savedX = fish.x, savedY = fish.y;
     fish.x = W/2;
-    fish.y = H/2 + 170;
+    fish.y = H/2 + 180;
     drawFish();
     fish.x = savedX;
     fish.y = savedY;
@@ -622,9 +848,14 @@ function update() {
     if (game.state !== 'playing') return;
     game.frame++;
 
-    // 鱼移动
-    if (keys.left) fish.x = Math.max(30, fish.x - fish.speed);
-    if (keys.right) fish.x = Math.min(W - 30, fish.x + fish.speed);
+    // AI 控制（如果有AI模式且开启了）
+    if (aiMode) {
+        aiUpdate();
+    } else {
+        // 玩家控制
+        if (keys.left) fish.x = Math.max(30, fish.x - fish.speed);
+        if (keys.right) fish.x = Math.min(W - 30, fish.x + fish.speed);
+    }
 
     // 生成食物 - 随分数增加频率
     const spawnRate = Math.max(10, 30 - Math.floor(game.score / 10));
@@ -732,12 +963,28 @@ function draw() {
     // 绘制鱼
     drawFish();
 
-    // 分数显示在画布上（额外）
+    // 左上角状态
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
     ctx.font = 'bold 16px "Segoe UI", "PingFang SC", sans-serif';
     ctx.fillStyle = 'rgba(255,255,255,0.08)';
     ctx.fillText('🐋 蓝色大肥鱼', 12, 12);
+
+    // AI状态指示器
+    if (aiMode && game.state === 'playing') {
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'top';
+        ctx.font = '13px "Segoe UI", "PingFang SC", sans-serif';
+        ctx.fillStyle = 'rgba(255,100,200,0.4)';
+        ctx.fillText('🤖 AI 自动接粮中...', W - 12, 12);
+        
+        // 目标指示
+        if (aiTarget) {
+            ctx.fillStyle = 'rgba(255,100,200,0.2)';
+            ctx.font = '11px "Segoe UI", "PingFang SC", sans-serif';
+            ctx.fillText('🎯 目标: ' + aiTarget.type.emoji + ' +' + aiTarget.type.points, W - 12, 32);
+        }
+    }
 
     // 状态界面
     if (game.state === 'start') drawStartScreen();
@@ -766,6 +1013,10 @@ document.addEventListener('keydown', (e) => {
         if (game.state === 'start') resetGame();
         else if (game.state === 'over') resetGame();
     }
+    if (e.key === 'm' || e.key === 'M') {
+        e.preventDefault();
+        toggleAI();
+    }
 });
 
 document.addEventListener('keyup', (e) => {
@@ -790,6 +1041,7 @@ canvas.addEventListener('touchstart', (e) => {
 canvas.addEventListener('touchmove', (e) => {
     e.preventDefault();
     if (game.state !== 'playing') return;
+    if (aiMode) return; // AI模式下不响应触屏
     const rect = canvas.getBoundingClientRect();
     const scaleX = W / rect.width;
     touchX = (e.touches[0].clientX - rect.left) * scaleX;
@@ -804,6 +1056,7 @@ canvas.addEventListener('touchend', (e) => {
 // 鼠标支持
 canvas.addEventListener('mousemove', (e) => {
     if (game.state !== 'playing') return;
+    if (aiMode) return; // AI模式下不响应鼠标
     const rect = canvas.getBoundingClientRect();
     const scaleX = W / rect.width;
     const mx = (e.clientX - rect.left) * scaleX;
@@ -814,6 +1067,9 @@ canvas.addEventListener('click', (e) => {
     if (game.state === 'start') resetGame();
     else if (game.state === 'over') resetGame();
 });
+
+// AI按钮事件
+document.getElementById('aiToggleBtn').addEventListener('click', toggleAI);
 
 // 初始化
 updateUI();
